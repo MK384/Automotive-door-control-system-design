@@ -4,7 +4,7 @@
  ******************************************************************************
  * @file    Sppeed_Sensor.h
  * @author  MOHAMMED KHALED
- * @brief   Header file of Spped sensor ECUAL module.
+ * @brief   Header file of Speed sensor ECUAL module.
  ******************************************************************************
  * @attention
  * All rights reserved.

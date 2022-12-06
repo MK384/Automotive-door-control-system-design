@@ -2,17 +2,17 @@
 
 /**
  ******************************************************************************
- * @file    Door_Sensor.h
+ * @file    ALARM_Control.h
  * @author  MOHAMMED KHALED
- * @brief   Header file of Door Sensor ECUAL module.
+ * @brief   Header file of ALARM Control ECUAL module.
  ******************************************************************************
  * @attention
  * All rights reserved.
  ******************************************************************************
  */
 
-#ifndef __ECUAL_DOOR_SENSOR_H__
-#define __ECUAL_DOOR_SENSOR_H__
+#ifndef __ECUAL_ALARM_CONTROL_H__
+#define __ECUAL_ALARM_CONTROL_H__
 
 /*- INCLUDES -----------------------------------------------*/
 
@@ -21,18 +21,16 @@
 /* Exported types ------------------------------------------------------------*/
 
 /**
- * @brief  Door State structures definition
+ * @brief  Alarm Control status definition
  */
 typedef enum
 {
-    Door_Opened = 0, /* At least on the car's doors is opened   */
-    Doors_Closed = 1 /*  All the doors are closed               */
+    STATUS_OK = 0,    /* Contol operation has successfully done   */
+    STATUS_NOT_OK = 1 /* Contol operation  has failed             */
 
-} Door_StateTypeDef;
+} Alarm_StatusTypeDef;
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
-
-#define SpeedMeasure uint32_t
 
 /*- ENUMS --------------------------------------------------*/
 
@@ -44,13 +42,11 @@ typedef enum
 
 /***************** Initialization function ***********************/
 
-void DoorSens_init(void);
+void AlarmCtrl_init(void);
 
 /*************** control operation functions *********************/
 
-Door_StateTypeDef DoorSens_getState(void);
+Alarm_StatusTypeDef AlarmCtrl_Set_ON(void);
+Alarm_StatusTypeDef AlramCtrl_Set_OFF(void);
 
-void DoorSens_SetOpenCallback(void (*openState_CallBack)(void));
-void DoorSens_SetCloseCallback(void (*closeState_CallBack)(void));
-
-#endif /*ECUAL_DOOR_SENSOR_.H*/
+#endif /*ECUAL_LIGHT_CONTROL_.H*/

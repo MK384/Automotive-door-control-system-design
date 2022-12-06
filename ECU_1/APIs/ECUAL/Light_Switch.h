@@ -1,18 +1,16 @@
-
-
 /**
  ******************************************************************************
- * @file    Door_Sensor.h
+ * @file    Light_Swich.h
  * @author  MOHAMMED KHALED
- * @brief   Header file of Door Sensor ECUAL module.
+ * @brief   Header file of Light Switch ECUAL module.
  ******************************************************************************
  * @attention
  * All rights reserved.
  ******************************************************************************
  */
 
-#ifndef __ECUAL_DOOR_SENSOR_H__
-#define __ECUAL_DOOR_SENSOR_H__
+#ifndef __ECUAL_LIGHT_SWITCH_H__
+#define __ECUAL_LIGHT_SWITCH_H__
 
 /*- INCLUDES -----------------------------------------------*/
 
@@ -25,14 +23,25 @@
  */
 typedef enum
 {
-    Door_Opened = 0, /* At least on the car's doors is opened   */
-    Doors_Closed = 1 /*  All the doors are closed               */
 
-} Door_StateTypeDef;
+    SWITCH_OFF_STATE = 1, /*  LIGHT SWITCH IS NOT PRESSED    */
+    SWITCH_ON_STATE = 0   /* LIGHT SWITCH IS PRESSED         */
+
+} SWITCH_StateTypeDef;
 
 /*- PRIMITIVE TYPES ----------------------------------------*/
 
-#define SpeedMeasure uint32_t
+/**
+ * @defgroup defines for the number of times to filter the reading values
+ */
+#define FilterNumType uint32_t
+#define SamplePeriod uint32_t
+
+#define FILTER_1_TIME ((FilterNumType)0X00000001)
+#define FILTER_2_TIME ((FilterNumType)0X00000002)
+#define FILTER_3_TIME ((FilterNumType)0X00000003)
+#define FILTER_4_TIME ((FilterNumType)0X00000004)
+#define FILTER_5_TIME ((FilterNumType)0X00000005)
 
 /*- ENUMS --------------------------------------------------*/
 
@@ -44,13 +53,13 @@ typedef enum
 
 /***************** Initialization function ***********************/
 
-void DoorSens_init(void);
+void LightSwitch_init(void);
 
 /*************** control operation functions *********************/
 
-Door_StateTypeDef DoorSens_getState(void);
+SWITCH_StateTypeDef LightSW_getState(FilterNumType samples, SamplePeriod period);
 
-void DoorSens_SetOpenCallback(void (*openState_CallBack)(void));
-void DoorSens_SetCloseCallback(void (*closeState_CallBack)(void));
+void LightSW_SetON_Callback(void (*SW_ON_CallBack)(void));
+void LightSW_SetOFF_Callback(void (*SW_OFF_CallBack)(void));
 
-#endif /*ECUAL_DOOR_SENSOR_.H*/
+#endif /*ECUAL_LIGHT_SWITCH_.H*/
